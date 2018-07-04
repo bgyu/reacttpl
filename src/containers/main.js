@@ -13,7 +13,7 @@ class MainContainer extends React.Component {
     render() {
         return (<div>
             <Header />
-            <Content />
+            <Content msg='Message from MainContainer'/>
             <Footer />
         </div>);
     }
