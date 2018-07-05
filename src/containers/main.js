@@ -8,19 +8,35 @@ class MainContainer extends React.Component {
         super(props);
 
         this.state = {
-            showMessage: false
+            showMessage: false,
+            todos: []
         };
     }
 
-    onClickButton()
+    onShowHideMessage()
     {
         this.setState({showMessage: !this.state.showMessage});
     }
 
+    onAddToDo()
+    {
+        const text = document.getElementById('todoText').value;
+        const todos = [...this.state.todos, text];
+        this.setState({todos: todos});
+    }
+
     render() {
+        const contentProps = {
+            msg: 'Message from MainContainer',
+            onShowHideMessage: this.onShowHideMessage.bind(this),
+            showMessage: this.state.showMessage,
+            onAddToDo: this.onAddToDo.bind(this),
+            todos: this.state.todos
+        };
+
         return (<div>
             <Header />
-            <Content msg='Message from MainContainer' handleClick={this.onClickButton.bind(this)} showMessage={this.state.showMessage}/>
+            <Content {...contentProps}/>
             <Footer />
         </div>);
     }
